@@ -46,7 +46,7 @@ RUN apk add --no-cache \
     ipvsadm=1.31-r3 \
     gettext=0.24.1-r0 \
     iproute2=6.15.0-r0 \
-    mariadb-client=10.11.7-r0
+    mariadb-client=11.4.5-r2
 
 # Copy keepalived from builder
 COPY --from=builder /usr/local/sbin/keepalived /usr/local/sbin/
