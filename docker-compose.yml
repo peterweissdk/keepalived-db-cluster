@@ -1,0 +1,15 @@
+---
+services:
+  keepalived:
+    image: peterweissdk/keepalived:latest
+    container_name: keepalived
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+      - NET_RAW
+    network_mode: host
+    volumes:
+      - ./check-script:/usr/local/scripts:ro
+    env_file:
+      - .env
