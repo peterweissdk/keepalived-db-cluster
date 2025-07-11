@@ -11,5 +11,6 @@ services:
     network_mode: host
     volumes:
       - ./check-script:/usr/local/scripts:ro
+      - ./log:/var/log:rw
     env_file:
       - .env
