@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 SCRIPT_TO_RUN="/usr/local/scripts/check-script.sh"
 LOG_FILE="/var/log/check_script.log"

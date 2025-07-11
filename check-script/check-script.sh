@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # This script is designed to run inside the keepalived container
 # to check the health of a MariaDB Galera node running with host networking
