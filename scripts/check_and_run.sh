@@ -3,6 +3,16 @@
 SCRIPT_TO_RUN="/usr/local/scripts/check-script.sh"
 LOG_FILE="/var/log/check_script.log"
 
+# Ensure log directory exists
+mkdir -p "$(dirname "$LOG_FILE")"
+
+# Create log file if it doesn't exist
+if [ ! -f "$LOG_FILE" ]; then
+    touch "$LOG_FILE"
+    # Initialize with healthy state
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - Status: 0 (Service is healthy) - Initial state" > "$LOG_FILE"
+fi
+
 # Function to get the last status from log file
 get_last_status() {
     if [ -f "$LOG_FILE" ]; then
@@ -57,11 +67,9 @@ else
     # Get previous status from log
     PREV_STATUS=$(get_last_status)
     
-    # Only log if previous status wasn't 0
-    if [ "$PREV_STATUS" != "0" ]; then
-        log_status "1" "Check script not found or not executable"
-    fi
-    exit 0  # Exit with 0 to indicate success if the script is not found
+    # Always log unhealthy state when script is not found
+    log_status "1" "Check script not found or not executable"
+    exit 1  # Exit with 1 to indicate unhealthy state when script is not found
 fi
 
 # Exit with the same status as the called script
