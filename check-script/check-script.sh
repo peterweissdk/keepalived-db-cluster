@@ -50,7 +50,8 @@ check_galera_status() {
 # Main execution
 if ! check_mysql_connection; then
     echo "Error: Cannot connect to MySQL"
-    exit 1
+    # Exit with 3 to indicate unknown state
+    exit 3
 fi
 
 check_galera_status
