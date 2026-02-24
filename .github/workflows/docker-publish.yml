@@ -103,6 +103,7 @@ jobs:
         with:
           image-names: ${{ github.event.repository.name }}
           cut-off: 1 day ago UTC
-          untagged-only: true
+          keep-n-most-recent: 3
+          skip-tags: latest
           account-type: personal
           token: ${{ secrets.PAT_GIT_ACTION }}
