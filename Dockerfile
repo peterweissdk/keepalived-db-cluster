@@ -15,7 +15,7 @@ RUN apk add --no-cache \
     git=2.49.1-r0
 
 # Clone and build keepalived
-RUN git clone https://github.com/acassen/keepalived.git . && \
+RUN git clone --branch v2.3.4 --depth 1 https://github.com/acassen/keepalived.git . && \
     ./build_setup && \
     ./configure --disable-dynamic-linking && \
     make && \
