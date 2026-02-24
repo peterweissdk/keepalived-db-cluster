@@ -1,4 +1,4 @@
-# 💾 Keepalived Docker Container
+# 💾 Keepalived container with Galera check-script
 
 [![Static Badge](https://img.shields.io/badge/Docker-Container-white?style=flat&logo=docker&logoColor=white&logoSize=auto&labelColor=black)](https://docker.com/)
 [![Static Badge](https://img.shields.io/badge/Alpine-V3.22-white?style=flat&logo=alpinelinux&logoColor=white&logoSize=auto&labelColor=black)](https://www.alpinelinux.org/)
@@ -75,7 +75,7 @@ Create a script to run at regular intervals to check the state of your service. 
 
 ```bash
 # Clone the repository
-git clone https://github.com/peterweissdk/keepalived-db-cluster/
+git clone https://github.com/peterweissdk/keepalived-db-cluster.git
 cd keepalived-db-cluster
 
 # Build the image
