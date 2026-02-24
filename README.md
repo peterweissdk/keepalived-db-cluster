@@ -75,8 +75,8 @@ Create a script to run at regular intervals to check the state of your service. 
 
 ```bash
 # Clone the repository
-git clone https://github.com/peterweissdk/keepalived.git
-cd keepalived
+git clone https://github.com/peterweissdk/keepalived-db-cluster/
+cd keepalived-db-cluster
 
 # Build the image
 docker build -t keepalived:latest .
@@ -85,12 +85,13 @@ docker build -t keepalived:latest .
 ## 📝 Directory Structure
 
 ```bash
-keepalived/
+keepalived-db-cluster/
+├── check-script
+│   └── check-script.sh
 ├── conf/
 │   └── keepalived.conf_tpl
 ├── scripts/
 │   └── check_and_run.sh
-├── .github/
 ├── .env
 ├── Dockerfile
 ├── docker-entrypoint.sh
