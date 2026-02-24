@@ -105,4 +105,4 @@ jobs:
           cut-off: 1 day ago UTC
           untagged-only: true
           account-type: personal
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_GIT_ACTION }}
