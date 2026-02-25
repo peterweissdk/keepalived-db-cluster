@@ -1,0 +1,32 @@
+# Name of the workflow as it appears in the GitHub Actions tab
+name: Lint Code
+
+on:
+  # Runs whenever code is pushed to the 'main' branch
+  push:
+    branches: [ "main" ]
+  # Runs on any Pull Request targeting the 'main' branch
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  lint:
+    name: Super-Linter
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Super-Linter
+        uses: super-linter/super-linter@v8.5.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: main
+          VALIDATE_ALL_CODEBASE: false
