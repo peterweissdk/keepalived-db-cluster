@@ -42,7 +42,11 @@ jobs:
         with:
           cosign-release: 'v2.2.4'
 
-      # 3. Sets up Docker Buildx (extended build capabilities, like caching)
+      # 3. Sets up QEMU for multi-architecture builds
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      # 4. Sets up Docker Buildx (extended build capabilities, like caching)
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.0.0
 
@@ -77,12 +81,14 @@ jobs:
             # Always tag as 'latest' when pushing specifically to the main branch
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
 
-      # 6. The "heavy lifting": Builds the Dockerfile and pushes it to the registry
+      # 7. The "heavy lifting": Builds the Dockerfile and pushes it to the registry
       - name: Build and push Docker image
         id: build-and-push
         uses: docker/build-push-action@v5.0.0
         with:
           context: .
+          # Build for multiple architectures
+          platforms: linux/amd64,linux/arm64
           # Push to registry unless it's just a Pull Request check
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
