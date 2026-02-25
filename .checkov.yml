@@ -1,3 +1,4 @@
+---
 # Keepalived requires root to manage network interfaces and VRRP
 # Permissions are scoped per-job, not write-all
 skip-check:

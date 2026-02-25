@@ -1,9 +1,12 @@
+---
+# Allow version tags like @v4, don't require SHA pinning
+# Credential persistence is acceptable for checkout in lint workflow
 rules:
   unpinned-uses:
-    ignore: []
+    ignore: [ ]
     config:
       policies:
-        "*": ref-pin  # Allow version tags like @v4, don't require SHA pinning
+        "*": ref-pin
   artipacked:
     ignore:
-      - lint.yml  # Credential persistence is acceptable for checkout in lint workflow
+      - lint.yml
