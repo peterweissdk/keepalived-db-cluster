@@ -1,0 +1,2 @@
+# Keepalived requires root to manage network interfaces and VRRP
+DS-0002

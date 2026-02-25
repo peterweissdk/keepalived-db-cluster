@@ -1,0 +1,3 @@
+skip-check:
+  - CKV_DOCKER_3  # Keepalived requires root to manage network interfaces and VRRP
+  - CKV2_GHA_1    # Permissions are scoped per-job, not write-all

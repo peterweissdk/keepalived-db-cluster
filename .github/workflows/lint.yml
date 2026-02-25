@@ -4,10 +4,12 @@ name: Lint Code
 on:
   # Runs whenever code is pushed to the 'main' branch
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   # Runs on any Pull Request targeting the 'main' branch
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   lint:
