@@ -33,7 +33,7 @@ docker run -d \
   --cap-add=NET_RAW \
   --net=host \
   --env-file .env \
-  keepalived:latest
+  keepalived-db-cluster:latest
 
 # Run the container using the provided Docker Compose and .env file
 docker compose up -d
@@ -79,7 +79,7 @@ git clone https://github.com/peterweissdk/keepalived-db-cluster.git
 cd keepalived-db-cluster
 
 # Build the image
-docker build -t keepalived:latest .
+docker build -t keepalived-db-cluster:latest .
 ```
 
 ## 📝 Directory Structure
@@ -113,15 +113,15 @@ The container includes a comprehensive health check system that monitors:
 
 View health status:
 ```bash
-docker inspect --format='{{.State.Health.Status}}' keepalived
+docker inspect --format='{{.State.Health.Status}}' keepalived-db-cluster
 ```
 View detailed health check history:
 ```bash
-docker inspect --format='{{json .State.Health}}' keepalived | jq
+docker inspect --format='{{json .State.Health}}' keepalived-db-cluster | jq
 ```
 Watch health status in real-time:
 ```bash
-watch -n 5 'docker inspect --format="{{.State.Health.Status}}" keepalived'
+watch -n 5 'docker inspect --format="{{.State.Health.Status}}" keepalived-db-cluster'
 ```
 
 ## 🤝 Contributing
