@@ -105,5 +105,5 @@ jobs:
           cut-off: 1d
           keep-n-most-recent: 3
           image-tags: "!latest"
-          account: ${{ github.repository_owner }}
+          account: user
           token: ${{ secrets.PAT_GIT_ACTION }}
