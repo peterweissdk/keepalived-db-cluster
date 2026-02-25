@@ -99,11 +99,11 @@ jobs:
       packages: write
     steps:
       - name: Delete old untagged images
-        uses: snok/container-retention-policy@v2
+        uses: snok/container-retention-policy@v3.0.1
         with:
           image-names: ${{ github.event.repository.name }}
-          cut-off: 1 day ago UTC
+          cut-off: 1d
           keep-n-most-recent: 3
-          skip-tags: latest
-          account-type: personal
+          image-tags: "!latest"
+          account: ${{ github.repository_owner }}
           token: ${{ secrets.PAT_GIT_ACTION }}

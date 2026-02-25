@@ -22,7 +22,7 @@ A lightweight, Alpine-based Docker container for running Keepalived with VRRP (V
 Run the container:
 ```bash
 # Pull the image
-docker pull peterweissdk/keepalived
+docker pull ghcr.io/peterweissdk/keepalived-db-cluster:latest
 
 # Run with custom configuration
 docker run -d \
