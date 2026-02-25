@@ -74,7 +74,7 @@ jobs:
         with:
           images: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/keepalived-db-cluster
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
           tags: |
             # If a git tag like v1.2.3 is pushed, create a Docker tag v1.2.3
             type=semver,pattern={{version}}
