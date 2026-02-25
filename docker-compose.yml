@@ -1,7 +1,7 @@
 ---
 services:
   keepalived:
-    image: peterweissdk/keepalived:latest
+    image: peterweissdk/keepalived-db-cluster:latest
     container_name: keepalived
     restart: unless-stopped
     cap_add:
