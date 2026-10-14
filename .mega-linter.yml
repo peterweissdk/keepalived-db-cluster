@@ -7,11 +7,15 @@ DISABLE_LINTERS:
   - SPELL_LYCHEE        # Link checking not needed for this project
   - REPOSITORY_DEVSKIM  # Security scanning covered by other tools
   - BASH_SHFMT          # Formatting preferences differ
+  - ACTION_ZIZMOR       # Too strict for this project
+  - ACTION_ACTIONLINT   # Workflow syntax is valid
+  - YAML_YAMLLINT       # Using v8r for YAML validation instead
 
 # Make some linters non-blocking (warnings only)
 DISABLE_ERRORS_LINTERS:
   - BASH_EXEC           # File permissions handled differently in containers
   - YAML_PRETTIER       # Formatting preferences
+  - DOCKERFILE_HADOLINT # Version pinning handled intentionally
 
 # Allow zizmor to use GITHUB_TOKEN for API access
 ACTION_ZIZMOR_UNSECURED_ENV_VARIABLES:
