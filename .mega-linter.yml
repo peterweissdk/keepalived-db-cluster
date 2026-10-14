@@ -1,0 +1,38 @@
+# MegaLinter Configuration
+# https://megalinter.io/configuration/
+
+# Linters to disable completely
+DISABLE_LINTERS:
+  - SPELL_CSPELL        # Too many false positives for technical terms
+  - SPELL_LYCHEE        # Link checking not needed for this project
+  - REPOSITORY_DEVSKIM  # Security scanning covered by other tools
+  - BASH_SHFMT          # Formatting preferences differ
+
+# Make some linters non-blocking (warnings only)
+DISABLE_ERRORS_LINTERS:
+  - BASH_EXEC           # File permissions handled differently in containers
+  - YAML_PRETTIER       # Formatting preferences
+
+# Allow zizmor to use GITHUB_TOKEN for API access
+ACTION_ZIZMOR_UNSECURED_ENV_VARIABLES:
+  - GITHUB_TOKEN
+
+# Hadolint configuration
+DOCKERFILE_HADOLINT_ARGUMENTS: "--ignore DL3018"
+
+# Yamllint configuration - be more lenient
+YAML_YAMLLINT_CONFIG_FILE: .yamllint.yml
+
+# Shellcheck configuration
+BASH_SHELLCHECK_ARGUMENTS: "-e SC2034 -e SC2155"
+
+# Files/folders to exclude from linting
+EXCLUDED_DIRECTORIES:
+  - .git
+  - megalinter-reports
+
+# Flavor suggestions
+FLAVOR_SUGGESTIONS: false
+
+# Print linter version
+PRINT_ALPACA: false

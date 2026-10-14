@@ -12,16 +12,16 @@ MARIADB_PORT=${MARIADB_PORT:-"3306"}
 
 # Function to check if we can connect to MySQL
 check_mysql_connection() {
-    mariadb-admin -u"$MARIADB_USER" -p"$MARIADB_PASSWORD" -h"$MARIADB_HOST" -P"$MARIADB_PORT" ping &>/dev/null
+    mariadb-admin -u"$MARIADB_USER" -p"$MARIADB_PASSWORD" -h"$MARIADB_HOST" -P"$MARIADB_PORT" ping >/dev/null 2>&1
     return $?
 }
 
 # Function to get Galera status
 check_galera_status() {
-    local wsrep_status
-    local wsrep_cluster_status
-    local wsrep_connected
-    local wsrep_ready
+    wsrep_status=""
+    wsrep_cluster_status=""
+    wsrep_connected=""
+    wsrep_ready=""
 
     if ! wsrep_status=$(mariadb -uroot -p"$MARIADB_PASSWORD" -h"$MARIADB_HOST" -P"$MARIADB_PORT" -N -e "SHOW STATUS LIKE 'wsrep_%'" 2>/dev/null); then
         echo "Error: Cannot query Galera status"

@@ -15,9 +15,10 @@ fi
 
 # Function to get the last status from log file
 get_last_status() {
+    last_status=""
     if [ -f "$LOG_FILE" ]; then
         # Extract the last status number from the log file
-        local last_status=$(tail -n 1 "$LOG_FILE" | grep -o 'Status: [0-9]\+' | grep -o '[0-9]\+')
+        last_status=$(tail -n 1 "$LOG_FILE" | grep -o 'Status: [0-9]\+' | grep -o '[0-9]\+')
         if [ -n "$last_status" ]; then
             echo "$last_status"
             return
@@ -28,8 +29,8 @@ get_last_status() {
 
 # Get status message based on exit code
 get_status_message() {
-    local status=$1    # Explicitly local
-    local message=""   # Explicitly local
+    status=$1
+    message=""
     
     case $status in
         0) message="Service is healthy" ;;
@@ -43,10 +44,10 @@ get_status_message() {
 
 # Logging function
 log_status() {
-    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    local status=$1
-    local message=$2
-    local status_message=$(get_status_message "$status")
+    timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    status=$1
+    message=$2
+    status_message=$(get_status_message "$status")
     echo "$timestamp - Status: $status ($status_message) - $message" >> "$LOG_FILE"
 }
 
