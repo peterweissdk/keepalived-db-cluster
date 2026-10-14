@@ -32,7 +32,7 @@ jobs:
     steps:
       # 1. Pulls the source code from the repository into the runner
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # 2. Installs Cosign, used for cryptographically signing the image
       # Skip this on Pull Requests because we don't sign untrusted code
@@ -112,7 +112,7 @@ jobs:
     if: github.event_name != 'pull_request'
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Update Docker Hub description
         uses: peter-evans/dockerhub-description@v4

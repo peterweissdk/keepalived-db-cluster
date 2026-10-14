@@ -1,28 +1,28 @@
 # Build stage
-FROM alpine:3.22 AS builder
+FROM alpine:3.24 AS builder
 
 WORKDIR /build
 
 # Install build dependencies
 RUN apk add --no-cache \
-    autoconf=2.72-r1 \
-    automake=1.17-r1 \
-    build-base=0.5-r3 \
+    autoconf=2.73-r0 \
+    automake=1.18.1-r1 \
+    build-base=0.5-r4 \
     libnl3-dev=3.11.0-r0 \
     libnfnetlink-dev=1.0.2-r3 \
-    openssl-dev=3.5.6-r0 \
-    linux-headers=6.14.2-r0 \
-    git=2.49.1-r0
+    openssl-dev=3.5.9-r0 \
+    linux-headers=7.0.0-r1 \
+    git=2.54.0-r0
 
 # Clone and build keepalived
-RUN git clone --branch v2.3.4 --depth 1 https://github.com/acassen/keepalived.git . && \
+RUN git clone --branch v2.4.3 --depth 1 https://github.com/acassen/keepalived.git . && \
     ./build_setup && \
     ./configure --disable-dynamic-linking && \
     make && \
     make install
 
 # Final stage
-FROM alpine:3.22
+FROM alpine:3.24
 
 # Add OCI labels
 LABEL org.opencontainers.image.title="Keepalived"
@@ -42,11 +42,11 @@ LABEL org.opencontainers.image.source.no-git=true
 RUN apk add --no-cache \
     libnl3=3.11.0-r0 \
     libnfnetlink=1.0.2-r3 \
-    openssl=3.5.6-r0 \
+    openssl=3.5.9-r0 \
     ipvsadm=1.31-r3 \
-    gettext=0.24.1-r0 \
-    iproute2=6.15.0-r0 \
-    mariadb-client=11.4.10-r0
+    gettext=1.0-r0 \
+    iproute2=7.0.0-r0 \
+    mariadb-client=11.8.8-r0
 
 # Copy keepalived from builder
 COPY --from=builder /usr/local/sbin/keepalived /usr/local/sbin/

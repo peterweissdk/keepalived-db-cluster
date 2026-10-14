@@ -1,5 +1,5 @@
 # Name of the workflow as it appears in the GitHub Actions tab
-name: Lint Code
+name: MegaLinter
 
 on:
   # Runs whenever code is pushed to the 'main' branch
@@ -12,8 +12,8 @@ on:
       - main
 
 jobs:
-  lint:
-    name: Super-Linter
+  megalinter:
+    name: MegaLinter
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -22,14 +22,14 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - name: Run Super-Linter
-        uses: super-linter/super-linter@v8.5.0
+      - name: MegaLinter
+        id: ml
+        uses: oxsecurity/megalinter@v10
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: main
-          VALIDATE_ALL_CODEBASE: false
-          VALIDATE_YAML_PRETTIER: false
+          VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
