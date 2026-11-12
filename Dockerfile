@@ -5,14 +5,14 @@ WORKDIR /build
 
 # Install build dependencies
 RUN apk add --no-cache \
-    autoconf=2.73-r0 \
-    automake=1.18.1-r1 \
-    build-base=0.5-r4 \
-    libnl3-dev=3.11.0-r0 \
-    libnfnetlink-dev=1.0.2-r3 \
-    openssl-dev=3.5.9-r0 \
-    linux-headers=7.0.0-r1 \
-    git=2.54.0-r0
+    autoconf~=2.73 \
+    automake~=1.18 \
+    build-base~=0.5 \
+    libnl3-dev~=3.11 \
+    libnfnetlink-dev~=1.0 \
+    openssl-dev~=3.5 \
+    linux-headers~=7.0 \
+    git~=2.54
 
 # Clone and build keepalived
 RUN git clone --branch v2.4.3 --depth 1 https://github.com/acassen/keepalived.git . && \
@@ -40,13 +40,13 @@ LABEL org.opencontainers.image.source.no-git=true
 
 # Install runtime dependencies
 RUN apk add --no-cache \
-    libnl3=3.11.0-r0 \
-    libnfnetlink=1.0.2-r3 \
-    openssl=3.5.9-r0 \
-    ipvsadm=1.31-r3 \
-    gettext=1.0-r0 \
-    iproute2=7.0.0-r0 \
-    mariadb-client=11.8.8-r0
+    libnl3~=3.11 \
+    libnfnetlink~=1.0 \
+    openssl~=3.5 \
+    ipvsadm~=1.31 \
+    gettext~=1.0 \
+    iproute2~=7.0 \
+    mariadb-client~=11.8
 
 # Copy keepalived from builder
 COPY --from=builder /usr/local/sbin/keepalived /usr/local/sbin/
